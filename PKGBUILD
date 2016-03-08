@@ -2,15 +2,16 @@
 # Contributor: Andrey Mivrenik <gim at fastmail dot fm>
 # Contributor: Glen Oakley <goakley123@gmail.com>
 
+_pi_ver=2
 _pkgname=cool-retro-term
 pkgname=$_pkgname-git
-pkgver=1.0.0.r2.gedad3ab
+pkgver=1.0.0.r39.g64e6208
 pkgrel=1
 pkgdesc='A good looking terminal emulator which mimics the old cathode display'
-arch=('i686' 'x86_64')
+arch=('any')
 url='https://github.com/Swordfish90/cool-retro-term'
 license=('GPL3')
-depends=('qmltermwidget' 'qt5-quickcontrols' 'qt5-graphicaleffects' 'hicolor-icon-theme')
+depends=('qmltermwidget-git' 'qt-sdk-raspberry-pi2-target-libs')
 makedepends=('git')
 provides=("$_pkgname=$pkgver")
 conflicts=("$_pkgname")
@@ -32,8 +33,9 @@ pkgver () {
 
 build() {
   cd "$srcdir/$_pkgname"
+  local qmake=/opt/qt-sdk-raspberry-pi${_pi_ver}/bin/qmake
 
-  qmake
+  $qmake
   make
 }
 
