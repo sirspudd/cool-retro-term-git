@@ -5,14 +5,14 @@
 _pi_ver=2
 _pkgname=cool-retro-term
 pkgname=$_pkgname-git
-pkgver=1.0.0.r39.g64e6208
-pkgrel=1
+pkgver=1.0.0.r42.gd345be2
+pkgrel=2
 pkgdesc='A good looking terminal emulator which mimics the old cathode display'
 arch=('any')
 url='https://github.com/Swordfish90/cool-retro-term'
 license=('GPL3')
-depends=('qmltermwidget-git' 'qt-sdk-raspberry-pi2-target-libs')
-makedepends=('git')
+depends=('qmltermwidget-git')
+makedepends=('git' 'qt-sdk-raspberry-pi${_pi_ver}')
 provides=("$_pkgname=$pkgver")
 conflicts=("$_pkgname")
 install=$_pkgname.install
@@ -32,8 +32,8 @@ pkgver () {
 }
 
 build() {
-  cd "$srcdir/$_pkgname"
   local qmake=/opt/qt-sdk-raspberry-pi${_pi_ver}/bin/qmake
+  cd "$srcdir/$_pkgname"
 
   $qmake
   make
