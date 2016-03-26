@@ -2,7 +2,7 @@
 # Contributor: Andrey Mivrenik <gim at fastmail dot fm>
 # Contributor: Glen Oakley <goakley123@gmail.com>
 
-_pi_ver=2
+_pi_ver=3
 _pkgname=cool-retro-term
 pkgname=$_pkgname-git
 pkgver=1.0.0.r42.gd345be2
@@ -40,7 +40,12 @@ build() {
 }
 
 package() {
+  local systemd_deploy_path=${pkgdir}/usr/lib/systemd/system
   cd "$srcdir/$_pkgname"
 
   make INSTALL_ROOT="$pkgdir" install
+
+  mkdir -p ${systemd_deploy_path}
+
+  cp ${startdir}/*.service ${systemd_deploy_path}
 }

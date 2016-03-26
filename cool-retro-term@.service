@@ -1,0 +1,17 @@
+# Forked off xlogin@.service
+
+[Unit]
+Description=Cool Retro Term on boot for user %i
+After=x@vt7.service systemd-user-sessions.service
+Wants=x@vt7.service
+Conflicts=getty@tty7.service
+
+[Service]
+User=%i
+WorkingDirectory=~
+TTYPath=/dev/tty7
+PAMName=login
+ExecStart=-/usr/bin/cool-retro-term -platform eglfs -profile "Transparent Green"
+
+[Install]
+WantedBy=graphical.target
