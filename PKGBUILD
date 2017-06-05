@@ -15,7 +15,7 @@ fi
 
 _pkgname=cool-retro-term
 pkgname=$_pkgname-git
-pkgver=1.0.0.r52.gcbaf10b
+pkgver=1.0.0.r69.ge48719f
 pkgrel=1
 pkgdesc='A good looking terminal emulator which mimics the old cathode display'
 arch=('any')
