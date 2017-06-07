@@ -2,8 +2,7 @@
 
 [Unit]
 Description=Cool Retro Term on boot for user %i
-After=x@vt7.service systemd-user-sessions.service
-Wants=x@vt7.service
+After=systemd-user-sessions.service
 Conflicts=getty@tty7.service
 
 [Service]
@@ -11,7 +10,9 @@ User=%i
 WorkingDirectory=~
 TTYPath=/dev/tty7
 PAMName=login
-ExecStart=-/usr/bin/cool-retro-term -platform eglfs -profile "Transparent Green"
+# ExecStart=-/usr/bin/cool-retro-term -platform eglfs -profile "Transparent Green"
+ExecStart=-/usr/bin/qlaunchfs /usr/bin/cool-retro-term --fullscreen --profile \"Transparent Green\"
+Environment=QT_WAYLAND_CLIENT_BUFFER_INTEGRATION=brcm
 
 [Install]
 WantedBy=graphical.target
